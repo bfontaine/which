@@ -4,22 +4,34 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/bfontaine/which/which"
 )
 
 var (
-	listAll bool
-	silent  bool
+	listAll      bool
+	silent       bool
+	resolveLinks bool
 )
 
 func usage() {
-	fmt.Fprint(os.Stderr, "usage: which [-as] program ...\n")
+	fmt.Fprint(os.Stderr, "usage: which [-asl] program ...\n")
 	os.Exit(1)
 }
 
 func printPath(path string) {
 	if !silent && path != "" {
+		if resolveLinks {
+			var err error
+
+			path, err = filepath.EvalSymlinks(path)
+
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			}
+		}
+
 		fmt.Println(path)
 	}
 }
@@ -29,6 +41,7 @@ func main() {
 
 	flag.BoolVar(&listAll, "a", false, "List all instances of executables found")
 	flag.BoolVar(&silent, "s", false, "No output, return 0 if any executable is found")
+	flag.BoolVar(&resolveLinks, "l", false, "Resolve symbolic links")
 
 	flag.Parse()
 
