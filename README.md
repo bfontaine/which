@@ -11,6 +11,9 @@ The executable works exactly like the `which` command:
 In addition, it supports a `-l` command which makes `which` resolve symbolic
 links before printing the paths.
 
+However, note that this implementation doesn’t support combined flags
+(e.g. `-al` won’t work, you’ll have to use `-a -l`).
+
 ## Install
 
     go get github.com/bfontaine/which

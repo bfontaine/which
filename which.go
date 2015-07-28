@@ -16,7 +16,8 @@ var (
 )
 
 func usage() {
-	fmt.Fprint(os.Stderr, "usage: which [-asl] program ...\n")
+	// don't mention the -l option to mirror the original `which`
+	fmt.Fprint(os.Stderr, "usage: which [-as] program ...\n")
 	os.Exit(1)
 }
 
