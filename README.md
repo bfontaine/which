@@ -15,7 +15,8 @@ However, note that this implementation doesn’t support combined flags
 (e.g. `-al` won’t work, you’ll have to use `-a -l`).
 
 You’ll have to ensure that `$GOPATH/bin` is at the beginning of your `PATH`
-environnment variable if you want to use it instead of the original one.
+environnment variable if you want to use this implementation instead of the
+original one.
 
 ## Install
 
@@ -55,4 +56,4 @@ I know it doesn’t really make sense to re-write a simple tool like `which`, bu
 I needed the `-l` option so I wrote this. I use [Homebrew](http://brew.sh/) on
 OS X and it installs binaries in a directory then symlinks them into
 `/usr/local/bin/`, which means it’s not possible to get the original path by
-using the original `which` alone.
+using the original `which` command alone.
