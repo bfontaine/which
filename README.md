@@ -14,6 +14,9 @@ links before printing the paths.
 However, note that this implementation doesn’t support combined flags
 (e.g. `-al` won’t work, you’ll have to use `-a -l`).
 
+You’ll have to ensure that `$GOPATH/bin` is at the beginning of your `PATH`
+environnment variable if you want to use it instead of the original one.
+
 ## Install
 
     go get github.com/bfontaine/which
