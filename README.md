@@ -8,9 +8,26 @@ The executable works exactly like the `which` command:
 
     which [-as] program ...
 
+In addition, it supports a `-l` command which makes `which` resolve symbolic
+links before printing the paths.
+
 ## Install
 
     go get github.com/bfontaine/which
+
+## Example
+
+```
+$ which vim
+/usr/local/bin/vim
+
+$ which -l vim
+/usr/local/Cellar/vim/7.4.712_1/bin/vim
+
+$ which -a vim
+/usr/local/bin/vim
+/usr/bin/vim
+```
 
 ## Library
 
@@ -25,3 +42,11 @@ executable := which.One("vim")
 // get all executables in $PATH
 executables := which.All("vim")
 ```
+
+## Why?
+
+I know it doesn’t really make sense to re-write a simple tool like `which`, but
+I needed the `-l` option so I wrote this. I use [Homebrew](http://brew.sh/) on
+OS X and it installs binaries in a directory then symlinks them into
+`/usr/local/bin/`, which means it’s not possible to get the original path by
+using the original `which` alone.
