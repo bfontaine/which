@@ -20,7 +20,7 @@ original one.
 
 ## Install
 
-    go get github.com/bfontaine/which
+    go install github.com/bfontaine/which@1.0.1
 
 ## Example
 
