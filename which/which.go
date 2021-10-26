@@ -34,15 +34,23 @@ func AllWithPath(cmd, pathenv string) []string {
 	return which(cmd, pathenv, false)
 }
 
-func isExecutable(f os.FileInfo) bool {
-	return !f.IsDir() && f.Mode()&0111 != 0
+func isExecutable(filepath string) bool {
+	f, err := os.Stat(filepath)
+	return err == nil && !f.IsDir() && f.Mode()&0111 != 0
 }
 
 func which(cmd, pathenv string, onlyOne bool) (paths []string) {
+	if filepath.IsAbs(cmd) && isExecutable(cmd) {
+		paths = append(paths, cmd)
+
+		if onlyOne {
+			return
+		}
+	}
 
 	for _, dir := range filepath.SplitList(pathenv) {
 		path := filepath.Join(dir, cmd)
-		if fi, err := os.Stat(path); err != nil || !isExecutable(fi) {
+		if !isExecutable(path) {
 			continue
 		}
 
@@ -53,5 +61,5 @@ func which(cmd, pathenv string, onlyOne bool) (paths []string) {
 		}
 	}
 
-	return paths
+	return
 }

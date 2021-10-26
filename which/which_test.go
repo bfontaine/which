@@ -51,6 +51,8 @@ func TestOneExists(t *testing.T) {
 	testEnv(t, func(d1, d2 string) {
 		assert.Equal(t, d1+"/a-exe", One("a-exe"))
 		assert.Equal(t, d2+"/e", One("e"))
+		assert.Equal(t, d2+"/e", One("./e"))
+		assert.Equal(t, d1+"/a-exe", One(d1+"/a-exe"))
 	})
 }
 
@@ -58,6 +60,7 @@ func TestOneDoesntExists(t *testing.T) {
 	testEnv(t, func(d1, d2 string) {
 		assert.Equal(t, "", One("c"))
 		assert.Equal(t, "", One("z"))
+		assert.Equal(t, "", One(d1+"/z"))
 	})
 }
 
