@@ -54,6 +54,6 @@ executables := which.All("vim")
 
 I know it doesn’t really make sense to re-write a simple tool like `which`, but
 I needed the `-l` option so I wrote this. I use [Homebrew](http://brew.sh/) on
-OS X and it installs binaries in a directory then symlinks them into
+macOS and it installs binaries in a directory then symlinks them into
 `/usr/local/bin/`, which means it’s not possible to get the original path by
 using the original `which` command alone.
