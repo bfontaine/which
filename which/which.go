@@ -17,8 +17,8 @@ func All(cmd string) []string {
 	return AllWithPath(cmd, os.Getenv("PATH"))
 }
 
-// OneWithPath is like One but it takes the PATH to check as a second argument
-// instead of using the PATH environnment variable.
+// OneWithPath is like One, but it takes the PATH to check as a second argument
+// instead of using the PATH environment variable.
 func OneWithPath(cmd, pathenv string) string {
 	paths := which(cmd, pathenv, true)
 
@@ -28,8 +28,8 @@ func OneWithPath(cmd, pathenv string) string {
 	return ""
 }
 
-// AllWithPath is like All but it takes the PATH to check as a second argument
-// instead of using the PATH environnment variable.
+// AllWithPath is like All, but it takes the PATH to check as a second argument
+// instead of using the PATH environment variable.
 func AllWithPath(cmd, pathenv string) []string {
 	return which(cmd, pathenv, false)
 }
