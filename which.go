@@ -16,25 +16,26 @@ var (
 )
 
 func usage() {
-	// don't mention the -l option to mirror the original `which`
-	fmt.Fprint(os.Stderr, "usage: which [-as] program ...\n")
+	fmt.Fprint(os.Stderr, "usage: which [-a] [-s] [-l] program ...\n")
 	os.Exit(1)
 }
 
 func printPath(path string) {
-	if !silent && path != "" {
-		if resolveLinks {
-			var err error
-
-			path, err = filepath.EvalSymlinks(path)
-
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-			}
-		}
-
-		fmt.Println(path)
+	if silent || path == "" {
+		return
 	}
+
+	if resolveLinks {
+		var err error
+
+		path, err = filepath.EvalSymlinks(path)
+
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		}
+	}
+
+	fmt.Println(path)
 }
 
 func main() {
@@ -46,8 +47,8 @@ func main() {
 
 	flag.Parse()
 
-	pathenv := os.Getenv("PATH")
-	if pathenv == "" {
+	pathEnv := os.Getenv("PATH")
+	if pathEnv == "" {
 		return
 	}
 
