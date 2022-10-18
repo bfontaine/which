@@ -30,8 +30,8 @@ func OneWithPath(cmd, pathenv string) string {
 
 // AllWithPath is like All, but it takes the PATH to check as a second argument
 // instead of using the PATH environment variable.
-func AllWithPath(cmd, pathenv string) []string {
-	return which(cmd, pathenv, false)
+func AllWithPath(cmd, pathEnv string) []string {
+	return which(cmd, pathEnv, false)
 }
 
 func isExecutable(filepath string) bool {

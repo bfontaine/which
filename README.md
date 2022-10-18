@@ -41,7 +41,9 @@ $ which -a vim
 **which** is also usable as a Go library:
 
 ```go
-// import "github.com/bfontaine/which/which"
+package main
+
+import "github.com/bfontaine/which/which"
 
 // get the first executable in $PATH
 executable := which.One("vim")

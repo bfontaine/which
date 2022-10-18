@@ -2,14 +2,12 @@ package which
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
 
-	"github.com/bfontaine/vanish/vanish"
+	"github.com/bfontaine/vanish/v2"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func touch(t *testing.T, dir, name string, exe bool) {
@@ -21,7 +19,7 @@ func touch(t *testing.T, dir, name string, exe bool) {
 		mode = 0644
 	}
 
-	require.Nil(t, ioutil.WriteFile(filepath.Join(dir, name), []byte("foo"), mode))
+	assert.Nil(t, os.WriteFile(filepath.Join(dir, name), []byte("foo"), mode))
 }
 
 func testEnv(t *testing.T, fn func(d1, d2 string)) {
