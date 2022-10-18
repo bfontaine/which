@@ -2,6 +2,9 @@
 
 **which** is a Go implementation of the UNIX command of the same name.
 
+Its main (and only) advantage over the standard command is its `-l` flag that makes it resolve symbolic links. This can
+be especially useful when using [Homebrew](https://brew.sh/).
+
 ## Usage
 
 The executable works exactly like the `which` command:
